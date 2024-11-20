@@ -42,6 +42,5 @@ class Hooks implements GetDoubleUnderscoreIDsHook, ArticleViewRedirectHook, Arti
 		$redirectDisplayTitle = $this->getPageProperty( $redirectTitle, 'displaytitle' ) ?? $redirectTitle;
 		$outputPage->setPageTitle( $redirectDisplayTitle );
 		$outputPage->setDisplayTitle( $redirectDisplayTitle );
-		$outputPage->addSubtitle( $article->getTitle() );
 	}
 }

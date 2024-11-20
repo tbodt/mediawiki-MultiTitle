@@ -1,5 +1,8 @@
 {
 	"name": "MultiTitle",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
 	"type": "other",
 	"Hooks": {
 		"ArticleViewRedirect": "main",

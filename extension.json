@@ -1,0 +1,29 @@
+{
+	"name": "MultiTitle",
+	"type": "other",
+	"Hooks": {
+		"ArticleViewRedirect": "main",
+		"ArticleViewFooter": "main",
+		"GetDoubleUnderscoreIDs": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\MultiTitle\\Hooks",
+			"services": [
+				"PageProps"
+			]
+		}
+	},
+	"ExtensionMessagesFiles": {
+		"MultiTitleMagic": "MultiTitle.i18n.magic.php"
+	},
+	"MessagesDirs": {
+		"MultiTitle": [
+			"i18n"
+		]
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\MultiTitle\\": "includes/"
+	},
+	"manifest_version": 2
+}

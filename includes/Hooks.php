@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\MultiTitle;
 use MediaWiki\Hook\GetDoubleUnderscoreIDsHook;
 use MediaWiki\Page\Hook\ArticleViewFooterHook;
 use MediaWiki\Page\Hook\ArticleViewRedirectHook;
-use PageProps;
+use MediaWiki\Page\PageProps;
 
 class Hooks implements GetDoubleUnderscoreIDsHook, ArticleViewRedirectHook, ArticleViewFooterHook {
 	private PageProps $mPageProps;

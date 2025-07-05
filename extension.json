@@ -1,5 +1,6 @@
 {
 	"name": "MultiTitle",
+	"license-name": "GPL-2.0-or-later",
 	"requires": {
 		"MediaWiki": ">= 1.43.0"
 	},

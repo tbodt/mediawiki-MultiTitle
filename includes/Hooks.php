@@ -6,6 +6,7 @@ use MediaWiki\Hook\GetDoubleUnderscoreIDsHook;
 use MediaWiki\Page\Hook\ArticleViewFooterHook;
 use MediaWiki\Page\Hook\ArticleViewRedirectHook;
 use MediaWiki\Page\PageProps;
+use MediaWiki\Title\Title;
 
 class Hooks implements GetDoubleUnderscoreIDsHook, ArticleViewRedirectHook, ArticleViewFooterHook {
 	private PageProps $mPageProps;
@@ -14,11 +15,15 @@ class Hooks implements GetDoubleUnderscoreIDsHook, ArticleViewRedirectHook, Arti
 		$this->mPageProps = $pageProps;
 	}
 
-	public function onGetDoubleUnderscoreIDs( &$ids ) {
+	/** @inheritDoc */
+	public function onGetDoubleUnderscoreIDs( &$ids ): void {
 		$ids[] = 'keeptitle';
 	}
 
-	private function getPageProperty( $title, $propertyName ) {
+	/**
+	 * Get the given property of a page, if it exists and has the property, or null otherwise.
+	 */
+	private function getPageProperty( Title|null $title, string $propertyName ): ?string {
 		if ( !$title ) {
 			return null;
 		}
@@ -26,20 +31,24 @@ class Hooks implements GetDoubleUnderscoreIDsHook, ArticleViewRedirectHook, Arti
 		return $properties[$title->getId()] ?? null;
 	}
 
-	public function onArticleViewRedirect( $article ) {
+	/** @inheritDoc */
+	public function onArticleViewRedirect( $article ): bool {
 		if ( $this->getPageProperty( $article->getRedirectedFrom(), 'keeptitle' ) !== null ) {
 			return false;
 		}
 	}
 
-	public function onArticleViewFooter( $article, $patrolFooterShown ) {
+	/** @inheritDoc */
+	public function onArticleViewFooter( $article, $patrolFooterShown ): void {
 		$redirectTitle = $article->getRedirectedFrom();
 		if ( $this->getPageProperty( $redirectTitle, 'keeptitle' ) === null ) {
 			return;
 		}
 
 		$outputPage = $article->getContext()->getOutput();
-		$redirectDisplayTitle = $this->getPageProperty( $redirectTitle, 'displaytitle' ) ?? $redirectTitle;
+		var_dump( $redirectTitle );
+		var_dump($this->getPageProperty( $redirectTitle, 'displaytitle' ));
+		$redirectDisplayTitle = $this->getPageProperty( $redirectTitle, 'displaytitle' ) ?? $redirectTitle->getPrefixedText();
 		$outputPage->setPageTitle( $redirectDisplayTitle );
 		$outputPage->setDisplayTitle( $redirectDisplayTitle );
 	}

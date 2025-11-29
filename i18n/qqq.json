@@ -3,5 +3,6 @@
 		"authors": [
 			"Tbodt"
 		]
-	}
+	},
+	"multititle-desc": "{{desc|name=MultiTitle|url=https://www.mediawiki.org/wiki/Extension:MultiTitle}}"
 }

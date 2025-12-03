@@ -36,6 +36,7 @@ class Hooks implements GetDoubleUnderscoreIDsHook, ArticleViewRedirectHook, Arti
 		if ( $this->getPageProperty( $article->getRedirectedFrom(), 'keeptitle' ) !== null ) {
 			return false;
 		}
+		return true;
 	}
 
 	/** @inheritDoc */
